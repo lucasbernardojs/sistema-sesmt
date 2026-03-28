@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{box-sizing:border-box;}
+
+body{
+margin:0;
+font-family:'Inter', sans-serif;
+background:#f4f7f5;
+color:#2c2c2c;
+}
+
+.layout{
+display:flex;
+min-height:100vh;
+}
+
+/* MENU */
+
+.menu{
+width:240px;
+background:#2f6e2c;
+color:white;
+padding-top:15px;
+display:flex;
+flex-direction:column;
+}
+
+.menu-titulo{
+font-size:12px;
+opacity:0.7;
+padding:12px 20px;
+text-transform:uppercase;
+letter-spacing:1px;
+}
+
+.menu button,
+.menu a{
+width:100%;
+padding:14px 20px;
+border:none;
+background:none;
+color:white;
+text-align:left;
+cursor:pointer;
+font-size:14px;
+display:flex;
+align-items:center;
+gap:12px;
+text-decoration:none;
+}
+
+.menu svg{
+width:18px;
+height:18px;
+stroke:white;
+stroke-width:2;
+fill:none;
+}
+
+.menu button:hover,
+.menu a:hover{
+background:#418E3D;
+}
+
+/* CONTENT */
+
+.content{
+flex:1;
+padding:35px;
+}
+
+.titulo-sistema{
+font-size:28px;
+font-weight:600;
+margin-bottom:25px;
+}
+
+.card{
+background:white;
+padding:35px;
+border-radius:14px;
+box-shadow:0 10px 25px rgba(0,0,0,0.06);
+}
+
+.card h2{
+margin-top:0;
+margin-bottom:30px;
+font-weight:500;
+font-size:18px;
+color:#4b5563;
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:24px;
+align-items:end;
+}
+
+.field{
+display:flex;
+flex-direction:column;
+}
+
+label{
+font-size:13px;
+margin-bottom:6px;
+color:#6b7280;
+}
+
+input,select{
+height:42px;
+padding:0 12px;
+border-radius:8px;
+border:1px solid #dcdcdc;
+font-size:14px;
+}
+
+input:focus,select:focus{
+outline:none;
+border:1px solid #418E3D;
+box-shadow:0 0 0 2px rgba(65,142,61,0.15);
+}
+
+.auto{
+background:#f1f3f5;
+cursor:not-allowed;
+}
+
+.salvar{
+margin-top:28px;
+padding:14px 22px;
+background:#418E3D;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
+
+.salvar:hover{
+background:#367a33;
+}
+
+/* TABLE */
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th{
+background:#418E3D;
+color:white;
+padding:12px;
+text-align:left;
+}
+
+td{
+padding:12px;
+border-bottom:1px solid #e5e7eb;
+}
+
+/* ALERTA */
+
+.alerta{
+margin-top:20px;
+display:none;
+align-items:center;
+justify-content:space-between;
+background:#e8f6ee;
+border:1px solid #b7e4c7;
+padding:16px;
+border-radius:10px;
+}
+
+.alerta.erro{
+background:#fdecea;
+border:1px solid #f5c2c0;
+}
+
+.alerta-info{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.alerta-icone{
+width:34px;
+height:34px;
+background:#22c55e;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+font-weight:600;
+}
+
+.alerta.erro .alerta-icone{
+background:#ef4444;
+}
+
+.fechar{
+cursor:pointer;
+font-size:18px;
+}
+.fechar{
+cursor:pointer;
+font-size:18px;
+}
+
+/* LOGO MENU */
+
+.logo-menu{
+display:flex;
+align-items:center;
+padding:5px 20px 10px 20px;
+margin-bottom:20px;
+}
+
+.logo-menu img{
+width:85px;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="layout">
+
+<div class="menu">
+
+<div class="logo-menu">
+<img src="https://i.imgur.com/4OOAAZ2.png">
+</div>
+
+<div class="menu-titulo">Sistema</div>
+
+<button onclick="abrirAba('lancamento')">
+
+<svg viewBox="0 0 24 24">
+<path d="M6 2h9l5 5v15H6z"/>
+<path d="M14 2v6h6"/>
+</svg>
+
+Lançamento
+</button>
+
+<button onclick="abrirAba('estoque')">
+
+<svg viewBox="0 0 24 24">
+<path d="M3 7l9-4 9 4-9 4-9-4z"/>
+<path d="M3 7v10l9 4 9-4V7"/>
+</svg>
+
+Estoque
+</button>
+
+<div class="menu-titulo">Relatórios</div>
+
+<a href="https://docs.google.com/spreadsheets/d/1ugrNHWkMQ3p6e9DgYM-ZoXiR4qGKq7CeOC3IzrWYgQc/edit" target="_blank">
+
+<svg viewBox="0 0 24 24">
+<path d="M3 3h18v18H3z"/>
+</svg>
+
+Histórico de lançamentos
+</a>
+
+<a href="https://lookerstudio.google.com/reporting/52162a3d-22bc-424e-8040-62d507940a2a" target="_blank">
+
+<svg viewBox="0 0 24 24">
+<path d="M3 3v18h18"/>
+<path d="M7 14l3-3 3 2 4-5"/>
+</svg>
+
+Dashboard
+</a>
+
+</div>
+
+<div class="content">
+
+<div class="titulo-sistema">
+Sistema de Controle de EPIs
+</div>
+
+<div id="lancamento" class="card">
+
+<h2>Lançamento de Entrega de EPI</h2>
+
+<div class="grid">
+
+<div class="field">
+<label>Base</label>
+<select id="base">
+<option value="">Selecione</option>
+<option>GRU</option>
+<option>GIG</option>
+<option>MAO</option>
+<option>VCP</option>
+<option>CWB</option>
+</select>
+</div>
+
+<div class="field">
+<label>Data</label>
+<input id="data" type="date">
+</div>
+
+<div class="field">
+<label>Hora</label>
+<input id="hora" class="auto" readonly>
+</div>
+
+<div class="field">
+<label>Nº matrícula</label>
+<input id="matricula" onkeyup="buscarColaborador()">
+</div>
+
+<div class="field">
+<label>Colaborador</label>
+<input id="colaborador" class="auto" readonly>
+</div>
+
+<div class="field">
+<label>Cargo</label>
+<input id="cargo" class="auto" readonly>
+</div>
+
+<div class="field">
+<label>EPI</label>
+<select id="epi">
+<option value="">Selecione</option>
+<option>Capacete</option>
+<option>Luva</option>
+<option>Óculos</option>
+<option>Protetor auricular tipo plug</option>
+<option>Protetor auricular tipo concha abafador</option>
+<option>Botina</option>
+<option>Máscara PFF2</option>
+</select>
+</div>
+
+<div class="field">
+<label>Quantidade</label>
+<input id="quantidade" type="number">
+</div>
+
+<div class="field">
+<label>Turno</label>
+<select id="turno">
+<option value="">Selecione</option>
+<option>Manhã</option>
+<option>Tarde</option>
+<option>Noite</option>
+</select>
+</div>
+
+<div class="field">
+<label>Responsável</label>
+<input id="responsavel" type="text">
+</div>
+
+</div>
+
+<button class="salvar" onclick="salvar()">Salvar lançamento</button>
+
+<div id="alertaSucesso" class="alerta">
+
+<div class="alerta-info">
+<div class="alerta-icone">!</div>
+<div class="alerta-texto">Registro salvo com sucesso</div>
+</div>
+
+<div class="fechar" onclick="fecharAlerta()">✕</div>
+
+</div>
+
+</div>
+
+<div id="estoque" class="card" style="display:none">
+
+<h2>Estoque de EPIs</h2>
+
+<div class="field" style="margin-bottom:20px;">
+  <label>Pesquisar EPI</label>
+  <input type="text" id="buscaEpi" placeholder="Digite o nome do EPI..." onkeyup="filtrarTabela()">
+</div>
+
+<table>
+
+<thead>
+<tr>
+<th>EPI</th>
+<th>Quantidade</th>
+</tr>
+</thead>
+
+<tbody id="tabelaEstoque"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function filtrarTabela(){
+
+  let input = document.getElementById("buscaEpi").value.toLowerCase()
+  let linhas = document.querySelectorAll("#tabelaEstoque tr")
+
+  linhas.forEach(function(linha){
+
+    let nomeEpi = linha.children[0].innerText.toLowerCase()
+
+    if(nomeEpi.includes(input)){
+      linha.style.display = ""
+    } else {
+      linha.style.display = "none"
+    }
+
+  })
+
+}  
+
+function abrirAba(nome){
+
+document.getElementById("lancamento").style.display="none"
+document.getElementById("estoque").style.display="none"
+
+document.getElementById(nome).style.display="block"
+
+if(nome=="estoque") carregarEstoque()
+
+}
+
+/* DATA AUTOMÁTICA */
+
+function preencherData(){
+
+let hoje=new Date()
+
+let data=
+hoje.getFullYear()+"-"+String(hoje.getMonth()+1).padStart(2,'0')+"-"+String(hoje.getDate()).padStart(2,'0')
+
+document.getElementById("data").value=data
+
+}
+
+preencherData()
+
+/* HORA AUTOMÁTICA */
+
+function atualizarHora(){
+
+let agora=new Date()
+
+let hora=
+String(agora.getHours()).padStart(2,'0')+":"+
+String(agora.getMinutes()).padStart(2,'0')+":"+
+String(agora.getSeconds()).padStart(2,'0')
+
+document.getElementById("hora").value=hora
+
+}
+
+setInterval(atualizarHora,1000)
+
+/* BUSCAR COLABORADOR */
+
+function buscarColaborador(){
+
+let matricula=document.getElementById("matricula").value
+
+fetch(`/buscar-colaborador/${matricula}`)
+.then(res => res.json())
+.then(res => {
+
+if(res){
+document.getElementById("colaborador").value=res.colaborador
+document.getElementById("cargo").value=res.cargo
+}
+
+})
+
+}
+
+/* ALERTA */
+
+function mostrarAlerta(msg,erro=false){
+
+let alerta=document.getElementById("alertaSucesso")
+let texto=document.querySelector(".alerta-texto")
+
+texto.innerText=msg
+
+if(erro){
+alerta.classList.add("erro")
+}else{
+alerta.classList.remove("erro")
+}
+
+alerta.style.display="flex"
+
+setTimeout(()=>alerta.style.display="none",4000)
+
+}
+
+function fecharAlerta(){
+document.getElementById("alertaSucesso").style.display="none"
+}
+
+/* SALVAR */
+
+function salvar(){
+
+let dados={
+
+base:base.value,
+data:data.value,
+hora:hora.value,
+matricula:matricula.value,
+colaborador:colaborador.value,
+cargo:cargo.value,
+turno:turno.value,
+responsavel:responsavel.value,
+epi:epi.value,
+quantidade:quantidade.value
+
+}
+
+if(!dados.base) return mostrarAlerta("Selecione a Base",true)
+if(!dados.matricula) return mostrarAlerta("Informe o Nº de matrícula",true)
+if(!dados.epi) return mostrarAlerta("Selecione o EPI",true)
+if(!dados.quantidade) return mostrarAlerta("Informe a quantidade",true)
+if(!dados.turno) return mostrarAlerta("Informe o turno",true)
+if(!dados.responsavel) return mostrarAlerta("Informe o responsável",true)
+
+
+fetch('/salvar', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(dados)
+})
+.then(res => res.json())
+.then(() => {
+  mostrarAlerta("Registro salvo com sucesso")
+  limparCampos()
+})
+
+/* LIMPAR CAMPOS */
+
+
+function limparCampos(){
+
+  document.getElementById("base").value = ""
+  document.getElementById("matricula").value = ""
+  document.getElementById("colaborador").value = ""
+  document.getElementById("cargo").value = ""
+  document.getElementById("turno").value = ""
+  document.getElementById("responsavel").value = ""
+  document.getElementById("epi").value = ""
+  document.getElementById("quantidade").value = ""
+
+}
+
+/* ESTOQUE */
+
+function carregarEstoque(){
+
+fetch('/estoque')
+.then(res => res.json())
+.then(lista => {
+
+let tabela=document.getElementById("tabelaEstoque")
+
+tabela.innerHTML=""
+
+lista.forEach(function(l){
+
+tabela.innerHTML+=`
+<tr>
+<td>${l[0]}</td>
+<td>${l[1]}</td>
+</tr>
+`
+
+})
+
+})
+
+}
+
+}).buscarEstoque()
+
+}
+
+</script>
+<h1>Sistema SESMT rodando 🚀</h1>
+</body>
+</html>
